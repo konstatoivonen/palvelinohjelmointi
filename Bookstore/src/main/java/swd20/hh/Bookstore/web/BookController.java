@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value="/index", method=RequestMethod.GET)
 public class BookController {
+
 	
 
 }
