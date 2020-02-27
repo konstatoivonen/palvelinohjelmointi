@@ -24,6 +24,7 @@ public class BookstoreApplication {
 		return (args) -> {
 			log.info("save a couple of books");
 			bookRepository.save(new Book("testi", "testi", 1920, 20202020, 17));
+			bookRepository.save(new Book("testi2", "testi2", 1921, 20202021, 18));
 			log.info("fetch all books");
 			for (Book book : bookRepository.findAll()) {
 				log.info(book.toString());
