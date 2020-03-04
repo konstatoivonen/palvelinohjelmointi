@@ -14,6 +14,7 @@ import java.util.List;
 import swd20.hh.Bookstore.domain.BookRepository;
 import swd20.hh.Bookstore.domain.CategoryRepository;
 import swd20.hh.Bookstore.domain.Book;
+import swd20.hh.Bookstore.domain.Category;
 
 @Controller
 public class BookController {

@@ -24,13 +24,15 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
-			log.info("save a couple of books");
-			bookRepository.save(new Book("testi", "testi", 1920, 20202020, 17, categoryRepository.findByName("Horror")));
-			bookRepository.save(new Book("testi2", "testi2", 1921, 20202021, 18, categoryRepository.findByName("Action")));
+			
 			
 			log.info("Create categories");
 			categoryRepository.save(new Category("Action"));
 			categoryRepository.save(new Category("Horror"));
+			
+			log.info("save a couple of books");
+			bookRepository.save(new Book("testi", "testi", 1920, 20202020, 17, categoryRepository.findByName("Horror")));
+			bookRepository.save(new Book("testi2", "testi2", 1921, 20202021, 18, categoryRepository.findByName("Action")));
 			
 			log.info("fetch all books");
 			for (Book book : bookRepository.findAll()) {
