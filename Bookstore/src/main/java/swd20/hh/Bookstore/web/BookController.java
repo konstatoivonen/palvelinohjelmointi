@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 import swd20.hh.Bookstore.domain.BookRepository;
+import swd20.hh.Bookstore.domain.CategoryRepository;
 import swd20.hh.Bookstore.domain.Book;
 
 @Controller
 public class BookController {
 	@Autowired
 	BookRepository bookRepository;
+	@Autowired
+	CategoryRepository categoryRepository;
 	
 	@RequestMapping(value="/index", method = RequestMethod.GET)
 	public String listBooks() {
@@ -35,6 +38,7 @@ public class BookController {
 	@RequestMapping(value="/newbook", method= RequestMethod.GET)
 	public String getNewBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "addbook";
 	}
 	
@@ -48,6 +52,7 @@ public class BookController {
 	public String saveBook(@ModelAttribute Book book, Model model) {
 		model.addAttribute("book", book);
 		return "booklist";
+		
 	}
 
 	
