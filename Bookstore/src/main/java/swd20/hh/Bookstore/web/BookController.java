@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 import swd20.hh.Bookstore.domain.BookRepository;
 import swd20.hh.Bookstore.domain.CategoryRepository;
@@ -36,7 +38,12 @@ public class BookController {
 		return "booklist";
 	}
 	
-	@RequestMapping(value="/newbook", method= RequestMethod.GET)
+	@RequestMapping(value="books", method = RequestMethod.GET)
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>)bookRepository.findAll();
+	}
+	
+	@RequestMapping(value="/newbook", method = RequestMethod.GET)
 	public String getNewBook(Model model) {
 		model.addAttribute("book", new Book());
 		model.addAttribute("categories", categoryRepository.findAll());
@@ -55,6 +62,11 @@ public class BookController {
 		return "booklist";
 		
 	}
+	
+	 @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
+	    public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {	
+	    	return bookRepository.findById(bookId);
+	    } 
 
 	
 
